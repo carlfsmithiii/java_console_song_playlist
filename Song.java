@@ -23,7 +23,7 @@ public class Song {
     }
 
     public void display() {
-        System.out.printf("Song title: %s\t\tDuration: %d:%d\n", this.title, this.duration.toMinutesPart(),
+        System.out.printf("Song title: %s\t\tDuration: %d:%02d\n", this.title, this.duration.toMinutesPart(),
                 this.duration.toSecondsPart());
     }
 
