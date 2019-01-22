@@ -17,19 +17,25 @@ public class Playlist {
         return this.albums;
     }
 
-    public boolean addAlbum(Album newAlbum) {
+    private boolean addAlbum(Album newAlbum) {
         if (albums.contains(newAlbum)) {
             System.out.println("Your album Collection already contains " + newAlbum.getAlbumTitle());
             return false;
-        } 
-        return albums.add(newAlbum);
+        }
+        if (albums.add(newAlbum)) {
+            System.out.println(newAlbum.getAlbumTitle() + " was successfully added to your collection.");
+            return true;
+        } else {
+            System.out.println("Sorry, " + newAlbum.getAlbumTitle() + " was not added to your collection.");
+            return false;
+        }
     }
 
-    public void addAlbum() {
+    public boolean addAlbum() {
         System.out.print("Please enter new album title: ");
         String albumTitle = scanner.nextLine();
         Album newAlbum = Album.buildAlbum(albumTitle);
-        this.addAlbum(newAlbum);
+        return this.addAlbum(newAlbum);
     }
 
     private Album getAlbumByName(String albumName) {
