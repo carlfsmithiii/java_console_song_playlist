@@ -16,6 +16,7 @@ public class Main {
         boolean quit = false;
         int action;
         while (!quit) {
+            System.out.print("Please enter command: ");
             action = scanner.nextInt();
             scanner.nextLine();
             switch (action) {

@@ -59,6 +59,7 @@ public class Playlist {
             return false;
         }
         playlist.add(song);
+        System.out.println(songName + " was successfully added to your playlist");
         return true;
     }
 
@@ -71,6 +72,9 @@ public class Playlist {
     }
 
     public void displayAlbums(boolean displaySongs) {
+        if (albums.isEmpty()) {
+            System.out.println("Sorry, you currently have no albums in your collection.");
+        }
         for (Album album : albums) {
             album.display(displaySongs);
         }
@@ -81,6 +85,9 @@ public class Playlist {
     }
 
     public void displayPlaylist() {
+        if (playlist.isEmpty()) {
+            System.out.println("Sorry, your playlist is empty");
+        }
         for (Song song : playlist) {
             song.display();
         }
