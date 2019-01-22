@@ -25,9 +25,6 @@ public class Song {
         if (otherObj == null) {
             return false;
         }
-        // if (!(otherObj instanceof Song)) {
-        //     return false;
-        // }
         if (getClass() != otherObj.getClass()) {
             return false;
         }

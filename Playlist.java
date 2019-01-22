@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class AlbumCollection {
+public class Playlist {
     private ArrayList<Album> albums;
     private LinkedList<Song> playlist;
 
