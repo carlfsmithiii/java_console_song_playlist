@@ -47,7 +47,7 @@ public class Playlist {
         return null;
     }
 
-    public boolean addSongToPlaylist(String albumName, String songName) {
+    private boolean addSongToPlaylist(String albumName, String songName) {
         Album album = getAlbumByName(albumName);
         if (album == null) {
             System.out.println("Sorry -- no album by the title " + albumName);
@@ -60,6 +60,14 @@ public class Playlist {
         }
         playlist.add(song);
         return true;
+    }
+
+    public boolean addSongToPlaylist() {
+        System.out.print("Please enter album name: ");
+        String albumName = scanner.nextLine();
+        System.out.print("Please enter song name: ");
+        String songName = scanner.nextLine();
+        return this.addSongToPlaylist(albumName, songName);
     }
 
     public void displayAlbums(boolean displaySongs) {

@@ -5,13 +5,13 @@ public class Main {
 
     public static void main(String[] args) {
         Playlist playlist = new Playlist();
-        activateJukeBox();
+        activateJukeBox(playlist);
         // playlist.addAlbum();
         // playlist.addAlbum();
         // playlist.displayAlbums();
     }
 
-    private static void activateJukeBox() {
+    private static void activateJukeBox(Playlist playlist) {
         System.out.println("Enter your command, of press 8 to view menu.");
         boolean quit = false;
         int action;
@@ -31,7 +31,7 @@ public class Main {
                 if (response.equals("y")) {
                     playlist.displayAlbums(true);
                 } else {
-                    playList.displayAlbums(false);
+                    playlist.displayAlbums(false);
                 }
                 break;
             case 3:
