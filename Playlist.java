@@ -49,4 +49,13 @@ public class Playlist {
         playlist.add(song);
         return true;
     }
+
+    public void displayAlbums() {
+        for (Album album : albums) {
+            System.out.println(album.getAlbumTitle());
+            for (Song song : album.getSongs()) {
+                System.out.println("\t" + song.getTitle());
+            }
+        }
+    }
 }
