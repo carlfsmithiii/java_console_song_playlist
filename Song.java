@@ -22,6 +22,11 @@ public class Song {
         return this.duration;
     }
 
+    public void display() {
+        System.out.printf("Song title: %s\t\tDuration: %d:%d", this.title, this.duration.toMinutesPart(),
+                this.duration.toSecondsPart());
+    }
+
     @Override
     public boolean equals(Object otherObj) {
         if (otherObj == this)

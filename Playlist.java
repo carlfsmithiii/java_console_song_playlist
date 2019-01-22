@@ -71,4 +71,10 @@ public class Playlist {
     public void displayAlbums() {
         this.displayAlbums(true);
     }
+
+    public void displayPlaylist() {
+        for (Song song : playlist) {
+            song.display();
+        }
+    }
 }

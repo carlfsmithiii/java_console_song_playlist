@@ -26,9 +26,17 @@ public class Main {
                 playlist.addSongToPlaylist();
                 break;
             case 2:
-                playlist.displayAlbums();
+                System.out.println("Display songs as well? (y/n)");
+                String response = scanner.nextLine();
+                if (response.equals("y")) {
+                    playlist.displayAlbums(true);
+                } else {
+                    playList.displayAlbums(false);
+                }
                 break;
             case 3:
+                playlist.displayPlaylist();
+                break;
             case 4:
             case 5:
             case 6:
