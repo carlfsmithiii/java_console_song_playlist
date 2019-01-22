@@ -35,7 +35,7 @@ public class Album {
             Song song = new Song(songTitle, minutes, seconds);
             songList.add(song);
         }
-        return songList.toArray();
+        return songList.toArray(new Song[songList.size()]);
     }
 
     public String getAlbumTitle() {
