@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Playlist {
@@ -6,6 +7,11 @@ public class Playlist {
 
     private ArrayList<Album> albums;
     private LinkedList<Song> playlist;
+
+    public Playlist() {
+        this.albums = new ArrayList<Album>();
+        this.playlist = new LinkedList<Song>();
+    }
 
     public ArrayList<Album> getAlbums() {
         return this.albums;
@@ -19,9 +25,9 @@ public class Playlist {
         return albums.add(newAlbum);
     }
 
-    public boolean addAlbum() {
+    public void addAlbum() {
         System.out.print("Please enter new album title: ");
-        String newTitle = scanner.nextLine();
+        String albumTitle = scanner.nextLine();
         Album newAlbum = Album.buildAlbum(albumTitle);
         this.addAlbum(newAlbum);
     }
