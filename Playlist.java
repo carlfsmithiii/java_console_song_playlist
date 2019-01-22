@@ -17,6 +17,10 @@ public class Playlist {
         return this.albums;
     }
 
+    public LinkedList<Song> getPlaylist() {
+        return this.playlist;
+    }
+
     private boolean addAlbum(Album newAlbum) {
         if (albums.contains(newAlbum)) {
             System.out.println("Your album Collection already contains " + newAlbum.getAlbumTitle());

@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
@@ -6,13 +8,10 @@ public class Main {
     public static void main(String[] args) {
         Playlist playlist = new Playlist();
         activateJukeBox(playlist);
-        // playlist.addAlbum();
-        // playlist.addAlbum();
-        // playlist.displayAlbums();
     }
 
     private static void activateJukeBox(Playlist playlist) {
-        System.out.println("Enter your command, of press 8 to view menu.");
+        System.out.println("Enter your command, of press 8 to view main menu.");
         boolean quit = false;
         int action;
         while (!quit) {
@@ -39,26 +38,143 @@ public class Main {
                 playlist.displayPlaylist();
                 break;
             case 4:
-            case 5:
-            case 6:
+                playMusic(playlist);
+                break;
             case 8:
-                printMenu();
+                printMainMenu();
                 break;
             case 9:
+                System.out.println("Good bye!");
                 quit = true;
                 break;
             default:
                 System.out.println("Invalid command.  Here is the menu:");
-                printMenu();
+                printMainMenu();
                 break;
             }
         }
     }
 
-    private static void printMenu() {
+    private static void playMusic(Playlist playlist) {
+        printPlayMenu();
+        boolean quit = false;
+        boolean isGoingForward = true;
+        int action;
+        LinkedList<Song> songList = playlist.getPlaylist();
+
+        ListIterator<Song> listIterator = songList.listIterator();
+        if (songList.isEmpty()) {
+            System.out.println("Your playlist is empty.");
+            return;
+        } else {
+            System.out.println("Now playing " + listIterator.next().getTitle());
+        }
+
+        while (!quit) {
+            System.out.print("Enter your command: ");
+            action = scanner.nextInt();
+            scanner.nextLine();
+            switch (action) {
+            case 0: // play next song
+                if (!isGoingForward) {
+                    if (listIterator.hasNext()) {
+                        listIterator.next();
+                    }
+                    isGoingForward = true;
+                }
+                if (listIterator.hasNext()) {
+                    System.out.println("Now Playing " + listIterator.next().getTitle());
+                } else {
+                    System.out.println("You have reached the end of your playlist");
+                    isGoingForward = false;
+                }
+                break;
+            case 1: // skip back
+                System.out.print("How many songs back do you want to go? ");
+                int howFarBack = scanner.nextInt();
+                scanner.nextLine();
+                if (isGoingForward) {
+                    if (listIterator.hasPrevious()) {
+                        listIterator.previous();
+                    }
+                    isGoingForward = false;
+                }
+                for (int i = 0; i < howFarBack; i++) {
+                    if (listIterator.hasPrevious()) {
+                        listIterator.previous();
+                    } else {
+                        System.out.println("You are now at the beginning of your playlist");
+                        break;
+                    }
+                }
+                if (listIterator.hasNext()) {
+                    System.out.println("The next song on the playlist is " + listIterator.next().getTitle());
+                    listIterator.previous();
+                }
+                break;
+            case 2: // skip forward
+                System.out.print("How many songs forward do you want to go? ");
+                int howFarForward = scanner.nextInt();
+                scanner.nextLine();
+                if (!isGoingForward) {
+                    if (listIterator.hasNext()) {
+                        listIterator.next();
+                    }
+                    isGoingForward = true;
+                }
+                for (int i = 0; i < howFarForward; i++) {
+                    if (listIterator.hasNext()) {
+                        listIterator.next();
+                    } else {
+                        System.out.println("You are now at the end of your playlist");
+                        listIterator.previous();
+                        break;
+                    }
+                }
+                if (listIterator.hasNext()) {
+                    System.out.println("The next song on the playlist is " + listIterator.next().getTitle());
+                    listIterator.previous();
+                }
+                break;
+            case 3: // replay
+                if (listIterator.hasPrevious()) {
+                    listIterator.previous();
+                } else {
+                    System.out.println("Sorry, you are already at the beginning of the playlist");
+                    break;
+                }
+                if (listIterator.hasNext()) {
+                    System.out.println("Now Playing " + listIterator.next());
+                    isGoingForward = true;
+                } else {
+                    System.out.println("You have reached the end of your playlist");
+                    isGoingForward = false;
+                }
+                break;
+            case 8:
+                printPlayMenu();
+                break;
+            case 9:
+                System.out.println("Returning to Main menu...");
+                quit = true;
+                break;
+            default:
+                printPlayMenu();
+                break;
+            }
+        }
+    }
+
+    private static void printMainMenu() {
         System.out.println("\nChoose from the menu below: ");
         System.out.printf("\t0 -- Add an album to your collection, \n" + "\t1 -- Add a song to your playlist, \n"
-                + "\t2 -- List Albums\n" + "\t3 -- List Playlist\n" + "\t4 -- Skip backwards to a previous song\n"
-                + "\t5 -- Skip forward to a later song\n" + "\t6 -- Replay the current song\n" + "\t9 -- Quit\n\n");
+                + "\t2 -- List Albums\n" + "\t3 -- List Playlist\n" + "\t4 -- Play Some Music!\n"
+                + "\t8 -- Display Main Menu\n" + "\t9 -- Quit\n\n");
+    }
+
+    private static void printPlayMenu() {
+        System.out.println("\nChoose from the menu below: ");
+        System.out.println("\t1 -- Skip backwards to a previous song\n" + "\t2 -- Skip forward to a later song\n"
+                + "\t3 -- Replay the current song\n" + "\t8 -- Display Menu" + "\t9 -- Return to Main Menu\n");
     }
 }
