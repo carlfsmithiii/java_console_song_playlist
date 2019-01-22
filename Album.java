@@ -1,3 +1,6 @@
+import java.util.Objects;
+import java.util.Arrays;
+
 public class Album {
     private String albumTitle;
     private Song[] songs;
@@ -25,42 +28,44 @@ public class Album {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
+    public boolean equals(Object otherObj) {
+        if (otherObj == this)
             return true;
-        if (o == null) {
+        if (otherObj == null) {
             return false;
         }
         // if (!(o instanceof Album)) {
         //     return false;
         // }
-        if (getClass() != o.getClass()) {
+        if (getClass() != otherObj.getClass()) {
             return false;
         }
-        Album album = (Album) o;
-        return Objects.equals(albumTitle, album.albumTitle) && checkSongListEquality(this.songs, album.songs);
+        Album other = (Album) otherObj;
+        // return Objects.equals(albumTitle, other.albumTitle) && checkSongListEquality(this.songs, other.songs);
+        return Objects.equals(albumTitle, other.albumTitle) && Arrays.equals(this.songs, other.songs);
     }
 
-    private boolean checkSongListEquality(Song[] a, Song[] b) {
-        if (a == null && b == null) {
-            return true;
-        } else if ( a == null || b == null) {
-            return false;
-        }
+    // private boolean checkSongListEquality(Song[] a, Song[] b) {
+    //     if (a == null && b == null) {
+    //         return true;
+    //     } else if ( a == null || b == null) {
+    //         return false;
+    //     }
 
-        if (a.length != b.length) {
-            return false;
-        }
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] != b[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
+    //     if (a.length != b.length) {
+    //         return false;
+    //     }
+    //     for (int i = 0; i < a.length; i++) {
+    //         if (a[i] != b[i]) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
     @Override
     public int hashCode() {
+        // I do not believe that this is correct given the definition of equals provided above.
         return Objects.hash(albumTitle, songs);
     }
 

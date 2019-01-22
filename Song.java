@@ -1,4 +1,5 @@
 import java.time.Duration;
+import java.util.Objects;
 
 public class Song {
     private String title;
@@ -18,20 +19,20 @@ public class Song {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
+    public boolean equals(Object otherObj) {
+        if (otherObj == this)
             return true;
-        if (o == null) {
+        if (otherObj == null) {
             return false;
         }
-        // if (!(o instanceof Song)) {
+        // if (!(otherObj instanceof Song)) {
         //     return false;
         // }
-        if (getClass() != o.getClass()) {
+        if (getClass() != otherObj.getClass()) {
             return false;
         }
-        Song song = (Song) o;
-        return Objects.equals(title, song.title) && (this.duration.toMillis() == song.duration.toMillis());
+        Song otherSong = (Song) otherObj;
+        return Objects.equals(title, otherSong.title) && (this.duration.toMillis() == otherSong.duration.toMillis());
     }
 
     @Override
