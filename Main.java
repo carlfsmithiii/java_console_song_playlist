@@ -26,6 +26,8 @@ public class Main {
                 playlist.addSongToPlaylist();
                 break;
             case 2:
+                playlist.displayAlbums();
+                break;
             case 3:
             case 4:
             case 5:

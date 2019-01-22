@@ -62,12 +62,13 @@ public class Playlist {
         return true;
     }
 
-    public void displayAlbums() {
+    public void displayAlbums(boolean displaySongs) {
         for (Album album : albums) {
-            System.out.println(album.getAlbumTitle());
-            for (Song song : album.getSongs()) {
-                System.out.println("\t" + song.getTitle());
-            }
+            album.display(displaySongs);
         }
+    }
+
+    public void displayAlbums() {
+        this.displayAlbums(true);
     }
 }

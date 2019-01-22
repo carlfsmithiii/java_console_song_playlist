@@ -46,6 +46,16 @@ public class Album {
         return this.songs;
     }
 
+    public void display(boolean displaySongs) {
+        System.out.println();
+        System.out.println("Album title: " + this.albumTitle);
+        if (displaySongs) {
+            for (Song song : songs) {
+                System.out.printf("\t" + song.getTitle() + "\n");
+            }
+        }
+    }
+
     public Song getSongByTitle(String songTitle) {
         for (Song song : songs) {
             if (songTitle.equals(song.getTitle())) {
@@ -69,12 +79,11 @@ public class Album {
         return Objects.equals(albumTitle, other.albumTitle) && Arrays.equals(this.songs, other.songs);
     }
 
-
     @Override
     public int hashCode() {
-        // I do not believe that this is correct given the definition of equals provided above.
+        // I do not believe that this is correct given the definition of equals provided
+        // above.
         return Objects.hash(albumTitle, songs);
     }
-
 
 }
