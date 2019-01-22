@@ -10,6 +10,10 @@ public class Song {
         this.duration = duration;
     }
 
+    public Song(String title, int minutes, int seconds) {
+        this(title, Duration.ofMinutes(minutes).plusSeconds(seconds));
+    }
+
     public String getTitle() {
         return this.title;
     }

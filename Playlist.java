@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Playlist {
+    private static Scanner scanner = new Scanner(System.in);
+
     private ArrayList<Album> albums;
     private LinkedList<Song> playlist;
 
@@ -14,6 +17,14 @@ public class Playlist {
             return false;
         } 
         return albums.add(newAlbum);
+    }
+
+    public boolean addAlbum() {
+        System.out.print("Please enter new album title: ");
+        String newTitle = scanner.nextLine();
+        Album newAlbum = new Album(newTitle);
+        newAlbum.addSongs();
+        this.addAlbum(newAlbum);
     }
 
     private Album getAlbumByName(String albumName) {
