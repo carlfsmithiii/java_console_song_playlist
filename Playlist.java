@@ -22,8 +22,7 @@ public class Playlist {
     public boolean addAlbum() {
         System.out.print("Please enter new album title: ");
         String newTitle = scanner.nextLine();
-        Album newAlbum = new Album(newTitle);
-        newAlbum.addSongs();
+        Album newAlbum = Album.buildAlbum(albumTitle);
         this.addAlbum(newAlbum);
     }
 
